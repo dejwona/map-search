@@ -1,0 +1,145 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    background-color: black;
+    font-family: 'Roboto';
+}
+.container {
+    margin: 0 auto;
+    width: 95%;
+    height: 80%;
+}
+/*subNav*/
+.subNav {
+    padding-top: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+/*form*/
+.navSearch {
+    display: flex;
+    justify-content: flex-end;
+}
+.countryForm {
+    height: 20%;
+    padding: 2% 2% 0 0;
+}
+.countryTitle {
+    padding-left: 1.5%;
+    font-size: 2.4em;
+    color: white;
+}
+.get_title {
+    width: 60%;
+    height: 2.5em;
+    padding-left: 0.5em;
+    margin-left: 0.5em;
+    margin-bottom: 2em;
+    border-radius:  5px 0 0 5px ;
+    border: white;
+}
+#search { 
+    cursor: pointer;
+    width: 40px;   
+    height: 2.65em;
+    margin-top: 1.8%;
+    background:url(../img/search.png) no-repeat;
+    background-color: white;
+    border-radius: 0  5px 5px 0;
+    border: white;
+}
+#search:hover {
+    cursor: pointer;
+    width: 40px;   
+    height: 2.65em;
+    margin-top: 1.8%;
+    background:url(../img/searchhover.png) no-repeat;
+    background-color: #222222;
+    border-radius: 0  5px 5px 0;
+    border: #222222;
+}
+.countryVal {
+    color: rgb(169, 178, 185);
+    font-weight: 100;
+    line-height: 7pt;
+}
+.error {
+    color: red;
+    font-weight: 100;
+    line-height: 0;
+    padding: 0 0 0 2%;
+    margin: 0;
+}
+.error {
+    display: none;
+}
+/*zoom*/
+.zoom {
+    width: 160px;
+}
+.circle {
+    margin-right: 2%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    float: left;
+    position: relative;
+}
+
+.ico {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    margin-right: 1%;
+}
+.map {
+    align-self: center;
+    overflow: scroll;
+    width: 90%;
+    height: 75%;
+}
+.land {
+    fill: #888f94;
+    fill-opacity: 1;
+    stroke:black;
+    stroke-opacity: 1;
+    stroke-width:0.5;
+}
+.info {
+    background-color: rgba(48, 48, 48, .5);
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: -300px;
+}
+.close {
+    z-index: 100;
+    cursor: pointer;
+    padding: 1%;
+}
+.closeLine {
+    background-color: rgb(136, 143, 148);
+    width: 2px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    left: 280px;
+}
+.close1 {
+    transform:rotate(45deg);
+}
+.close2 {
+    transform:rotate(135deg);
+}
+.listCountry, .itemCountry {
+    padding-top: 40%;
+    color: white;
+    font-size: 1em;
+    list-style-type: none;
+}
+
