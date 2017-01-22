@@ -3,6 +3,7 @@ $(function() {
   var land = $('.land');
   var $container = $('.container');
   var $countryForm = $container.find('.countryForm');
+  var $error = $countryForm.find('.error');
   var $get_title = $countryForm.find('.get_title');
   var $info = $container.find('.info');
   var $ul = $info.find('.listCountry');
@@ -12,6 +13,10 @@ $(function() {
   var $in = $zoom.find(".in");
   var $out = $zoom.find(".out");
   var $home = $zoom.find(".home");
+  var $form = $container.find('.countryForm');
+  var $titleInput = $form.find('.get_title');
+  var name;
+  name = $titleInput.val();
   var $listItem;
   var itemHTML;
 
@@ -20,19 +25,19 @@ $(function() {
      var api = 'https://restcountries.eu/rest/v1/name/';
      $.ajax({
             url: api + country
-        }).done(function(response){         
+        }).done(function(response){
           console.log(response);
-              $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' + 
-              '<h2>' + response[0].name + '</h2>' + 
+              $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' +
+              '<h2>' + response[0].name + '</h2>' +
               '<p>' + '<h4 class="countryVal">' + 'Capital:' + '</h4>' + response[0].capital + '</p>' +
               '<p>' + '<h4 class="countryVal">' + 'Region:' + '</h4>' + response[0].region + '</p>' +
-              '<p>' + '<h4 class="countryVal">' + 'Subregion:' + '</h4>' + response[0].subregion + '</p>' + 
-              '<p>' + '<h4 class="countryVal">' + 'Population:' + '</h4>' + response[0].population + '</p>' + 
-              '<p>' + '<h4 class="countryVal">' + 'Currencies:' + '</h4>' + response[0].currencies + '</p>' + 
+              '<p>' + '<h4 class="countryVal">' + 'Subregion:' + '</h4>' + response[0].subregion + '</p>' +
+              '<p>' + '<h4 class="countryVal">' + 'Population:' + '</h4>' + response[0].population + '</p>' +
+              '<p>' + '<h4 class="countryVal">' + 'Currencies:' + '</h4>' + response[0].currencies + '</p>' +
               '</li>';
-          
+
               $ul.html($listItem);
-              
+
       }).fail(function(error) {
             console.log(error);
         })
@@ -42,19 +47,19 @@ $(function() {
      var apiCode = 'https://restcountries.eu/rest/v1/alpha/';
      $.ajax({
             url: apiCode + code
-        }).done(function(response){         
-          console.log(response);
-              $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' + 
-              '<h2>' + response.name + '</h2>' + 
+        }).done(function(response){
+          //console.log(response);
+              $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' +
+              '<h2>' + response.name + '</h2>' +
               '<p>' + '<h4 class="countryVal">' + 'Capital:' + '</h4>' + response.capital + '</p>' +
               '<p>' + '<h4 class="countryVal">' + 'Region:' + '</h4>' + response.region + '</p>' +
-              '<p>' + '<h4 class="countryVal">' + 'Subregion:' + '</h4>' + response.subregion + '</p>' + 
-              '<p>' + '<h4 class="countryVal">' + 'Population:' + '</h4>' + response.population + '</p>' + 
-              '<p>' + '<h4 class="countryVal">' + 'Currencies:' + '</h4>' + response.currencies + '</p>' + 
+              '<p>' + '<h4 class="countryVal">' + 'Subregion:' + '</h4>' + response.subregion + '</p>' +
+              '<p>' + '<h4 class="countryVal">' + 'Population:' + '</h4>' + response.population + '</p>' +
+              '<p>' + '<h4 class="countryVal">' + 'Currencies:' + '</h4>' + response.currencies + '</p>' +
               '</li>';
-          
+
               $ul.html($listItem);
-              
+
       }).fail(function(error) {
             console.log(error);
         })
@@ -66,11 +71,11 @@ $(function() {
     $('.land').each(function(){
     });
      $(this).css({fill:'rgb(169, 178, 185)'}); //jasny szary
-    });  
+    });
 
     land.on('mouseout', function(event){
         // color of map
-        console.log($(this).css('fill'));
+        //console.log($(this).css('fill'));
          if($(this).css('fill') == 'rgb(161, 7, 7)') {
            $(this).css({fill:'rgb(161, 7, 7)'});
          } else {
@@ -80,8 +85,9 @@ $(function() {
     });
 
     land.on('click', function(event){
-
-    	console.log(this.id);
+      $error.css('display', 'none');
+      $get_title.attr('value', 'Country');
+      //console.log(this.id);
       loadCountriesCode(this.id);
 
       $('.land').each(function(){
@@ -90,14 +96,22 @@ $(function() {
 
       });
       $(this).css({fill:'rgb(161, 7, 7)'}); // red
-      animateInfo();          
-    });     
+      animateInfo();
+    });
   }
- 
+
   landLand();
 
   $get_title.on('change', function(e){
+    land.css({fill:'rgb(136, 143, 148)'});
     animateInfo();
+    
+  })
+  $get_title.on('focus', function(e){
+     $get_title.attr('value', ' ');
+  })
+  $get_title.on('blur', function(e){
+     $get_title.attr('value', 'Country');
   })
 
 
@@ -106,7 +120,7 @@ $(function() {
         $info.animate({ "left": "+=300px" }, "slow" );
     } else {
         $info.attr('left','300px');
-    } 
+    }
   }
 
 
@@ -119,10 +133,6 @@ $close.on('click', function() {
 // form pobranie wartosci z inputa i zaladowanie z api danych
 function sendData(name) {
   var api = 'https://restcountries.eu/rest/v1/name/';
-  var $form = $container.find('.countryForm');
-  var $titleInput = $form.find('.get_title');
-  var $error = $form.find('.error');
-  var name;
 
         $form.on('submit', function(e) {
             e.preventDefault();
@@ -134,41 +144,57 @@ function sendData(name) {
                 type: 'GET',
                 dataType: 'json'
             }).done(function(response) {
-              console.log(response);             
+              console.log(response);
                 loadCountries(response[0].name);
                 $titleInput.val('');
 
             }).fail(function(error) {
                 //console.log(error);
                 $error.css('display','block');
+                $titleInput.val('');
             })
         });
     }
     sendData();
 
 // zoom
+var panZoomInstance = svgPanZoom('#map', {
+    //zoomEnabled: true,
+    //controlIconsEnabled: true,
+    center: true,
+    minZoom: 0.1
+  });
 
-var panZoomMap = svgPanZoom('.map');
-panZoomMap.resize(); // update SVG cached size and controls positions
+  // zoom out
+  panZoomInstance.zoom(1)
 
-panZoomMap.updateBBox(); // Update viewport bounding box
-panZoomMap.contain(); // fit works as expected
+  $(window).resize(function(){
+          panZoomInstance.resize();
+          panZoomInstance.fit();
+          panZoomInstance.center();
+  })
 
+// panZoomMap.resize(); // update SVG cached size and controls positions
 
-//'200 -20 900 700'
-$svg.attr('viewBox', '-400 -440 1900 1000');
-
+// panZoomMap.updateBBox(); // Update viewport bounding box
+// panZoomMap.contain(); // fit works as expected
+//
+// panZoomMap.resize(); // update SVG cached size and controls positions
+// panZoomMap.fit();
+// panZoomMap.center();
+//
+//
 
 $in.on('click', function(e){
-  panZoomMap.zoomIn();  
+  panZoomInstance.zoomIn();
 });
 
 $out.on('click', function(e){
-  panZoomMap.zoomOut();
+  panZoomInstance.zoomOut();
 });
 
 $home.on('click', function(e){
-  panZoomMap.resetZoom();
+  panZoomInstance.resetZoom();
 });
 
 

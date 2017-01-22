@@ -11,13 +11,7 @@ body {
 .container {
     margin: 0 auto;
     width: 95%;
-    height: 80%;
-}
-/*subNav*/
-.subNav {
-    padding-top: 3%;
-    display: flex;
-    justify-content: space-around;
+    /*height: 80%;*/
 }
 /*form*/
 .navSearch {
@@ -42,9 +36,9 @@ body {
     border-radius:  5px 0 0 5px ;
     border: white;
 }
-#search { 
+#search {
     cursor: pointer;
-    width: 40px;   
+    width: 40px;
     height: 2.65em;
     margin-top: 1.8%;
     background:url(../img/search.png) no-repeat;
@@ -54,7 +48,7 @@ body {
 }
 #search:hover {
     cursor: pointer;
-    width: 40px;   
+    width: 40px;
     height: 2.65em;
     margin-top: 1.8%;
     background:url(../img/searchhover.png) no-repeat;
@@ -78,23 +72,40 @@ body {
     display: none;
 }
 /*zoom*/
+.subNav {
+    display: flex;
+    justify-content: flex-end;
+}
 .zoom {
-    width: 160px;
+    width: 200px;
+}
+.home {
+    background:url(../img/home.png) no-repeat;
+    background-color: black;    
+}
+.home:hover {
+    background:url(../img/home-red.png) no-repeat;     
+}
+.in {
+    background:url(../img/plus.png) no-repeat;
+    background-color: black;    
+}
+.in:hover {
+    background:url(../img/plus-red.png) no-repeat;     
+}
+.out {
+    background:url(../img/minus.png) no-repeat;
+    background-color: black;    
+}
+.out:hover {
+    background:url(../img/minus-red.png) no-repeat;     
 }
 .circle {
-    margin-right: 2%;
+    margin-right: 5%;
     cursor: pointer;
     width: 50px;
     height: 50px;
     float: left;
-    position: relative;
-}
-
-.ico {
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    margin-right: 1%;
 }
 .map {
     align-self: center;
@@ -142,4 +153,3 @@ body {
     font-size: 1em;
     list-style-type: none;
 }
-

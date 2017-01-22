@@ -8,7 +8,7 @@
         <link rel="icon" href="" sizes="132x132">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-        <?xml version="1.0" encoding="utf-8"?>
+        <!-- <?xml version="1.0" encoding="utf-8"?> -->
     </head>
     <body>
         <div class="container">
@@ -22,10 +22,10 @@
                 </div>
             <div class="subNav">
                 <div class="zoom">
-                    <div class="circle in"><div class="ico"><img class="homeIcon" src="img/plus.png"></div></div>
-                    <div class="circle out"><div class="ico"><img class="homeIcon" src="img/minus.png"></div></div>
-                    <div class="circle home"><div class="ico"><img class="homeIcon" src="img/home.png"></div></div>
-                </div>                 
+                    <div class="circle in"></div>
+                    <div class="circle out"></div>
+                    <div class="circle home"></div>
+                </div>
             </div>
             <div class="info">
                     <div class="close">
@@ -36,9 +36,11 @@
                         <li class="itemCountry"></li>
                     </ul>
             </div>
-            <div>
+            <div style="width:100%; height: 800px; border:1px solid black;" >
             <!-- (c) ammap.com | SVG map of World High -->
-                <svg preserveAspectRatio="xMidYMid meet" class="map" id="map" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                <svg preserveAspectRatio="xMidYMid meet" class="map" id="map" viewBox="0 0 817 817"
+                style="display: inline; width: inherit; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit;"
+                xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
                 <defs>
                 <amcharts:ammap projection="mercator" leftLongitude="-169.110266" topLatitude="83.63001" rightLongitude="190.480712" bottomLatitude="-58.488473"></amcharts:ammap>
 
