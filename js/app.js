@@ -20,13 +20,13 @@ $(function() {
   var $listItem;
   var itemHTML;
 
+
     /* Insert Movies to DOM input*/
   function loadCountries(country) {
-     var api = 'https://restcountries.eu/rest/v1/name/';
-     $.ajax({
+    var api = 'https://restcountries.eu/rest/v1/name/';
+    $.ajax({
             url: api + country
         }).done(function(response){
-          console.log(response);
               $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' +
               '<h2>' + response[0].name + '</h2>' +
               '<p>' + '<h4 class="countryVal">' + 'Capital:' + '</h4>' + response[0].capital + '</p>' +
@@ -39,16 +39,14 @@ $(function() {
               $ul.html($listItem);
 
       }).fail(function(error) {
-            console.log(error);
         })
   }
-    /* Insert Movies to DOM click*/
-    function loadCountriesCode(code) {
-     var apiCode = 'https://restcountries.eu/rest/v1/alpha/';
-     $.ajax({
+  /* Insert Movies to DOM click*/
+  function loadCountriesCode(code) {
+    var apiCode = 'https://restcountries.eu/rest/v1/alpha/';
+    $.ajax({
             url: apiCode + code
         }).done(function(response){
-          //console.log(response);
               $listItem = '<li>' + '<h2 class="countryVal">' + 'Country:' + '</h2>' +
               '<h2>' + response.name + '</h2>' +
               '<p>' + '<h4 class="countryVal">' + 'Capital:' + '</h4>' + response.capital + '</p>' +
@@ -67,15 +65,12 @@ $(function() {
   // funkcja klikniecia w mape (kolorowanie)
   function landLand() {
     land.on('mouseover', function(event){
-      //console.log(this);
     $('.land').each(function(){
     });
      $(this).css({fill:'rgb(169, 178, 185)'}); //jasny szary
     });
 
     land.on('mouseout', function(event){
-        // color of map
-        //console.log($(this).css('fill'));
          if($(this).css('fill') == 'rgb(161, 7, 7)') {
            $(this).css({fill:'rgb(161, 7, 7)'});
          } else {
@@ -87,7 +82,6 @@ $(function() {
     land.on('click', function(event){
       $error.css('display', 'none');
       $get_title.attr('value', 'Country');
-      //console.log(this.id);
       loadCountriesCode(this.id);
 
       $('.land').each(function(){
@@ -104,8 +98,7 @@ $(function() {
 
   $get_title.on('change', function(e){
     land.css({fill:'rgb(136, 143, 148)'});
-    animateInfo();
-    
+    animateInfo();   
   })
   $get_title.on('focus', function(e){
      $get_title.attr('value', ' ');
@@ -120,7 +113,7 @@ $(function() {
         $info.animate({ "left": "+=300px" }, "slow" );
     } else {
         $info.attr('left','300px');
-    }
+    } 
   }
 
 
@@ -130,14 +123,34 @@ $close.on('click', function() {
 })
 
 
+
+  function colorMap() {
+
+    $('.land').each(function(){
+
+      var title = $(this).attr('title');
+      name = $titleInput.val();
+      //console.log(title);
+      if (title == name) {
+        //console.log(name);
+          $(this).css({fill:'rgb(161, 7, 7)'}); // red
+          console.log($(this));
+      } else {
+          $(this).css({fill:'rgb(136, 143, 148)'});
+      }
+    })
+  }
+  colorMap();
+
+
+
 // form pobranie wartosci z inputa i zaladowanie z api danych
-function sendData(name) {
-  var api = 'https://restcountries.eu/rest/v1/name/';
+  function sendData(name) {
+    var api = 'https://restcountries.eu/rest/v1/name/';
 
         $form.on('submit', function(e) {
             e.preventDefault();
             name = $titleInput.val();
-            //console.log(name);
 
             $.ajax({
                 url: api + name,
@@ -146,21 +159,19 @@ function sendData(name) {
             }).done(function(response) {
               console.log(response);
                 loadCountries(response[0].name);
-                $titleInput.val('');
+                colorMap();
 
+                //$titleInput.val('');
             }).fail(function(error) {
-                //console.log(error);
                 $error.css('display','block');
                 $titleInput.val('');
             })
         });
-    }
-    sendData();
+  }
+  sendData();
 
 // zoom
 var panZoomInstance = svgPanZoom('#map', {
-    //zoomEnabled: true,
-    //controlIconsEnabled: true,
     center: true,
     minZoom: 0.1
   });
@@ -174,16 +185,6 @@ var panZoomInstance = svgPanZoom('#map', {
           panZoomInstance.center();
   })
 
-// panZoomMap.resize(); // update SVG cached size and controls positions
-
-// panZoomMap.updateBBox(); // Update viewport bounding box
-// panZoomMap.contain(); // fit works as expected
-//
-// panZoomMap.resize(); // update SVG cached size and controls positions
-// panZoomMap.fit();
-// panZoomMap.center();
-//
-//
 
 $in.on('click', function(e){
   panZoomInstance.zoomIn();
