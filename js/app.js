@@ -131,7 +131,7 @@ $close.on('click', function() {
       var title = $(this).attr('title');
       name = $titleInput.val();
       //console.log(title);
-      if (title == name) {
+      if ( title.toLowerCase().trim() == name.toLowerCase().trim() ) {
         //console.log(name);
           $(this).css({fill:'rgb(161, 7, 7)'}); // red
           console.log($(this));
