@@ -1,3 +1,24 @@
+/* Preloader */
+ 
+#preloader {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background: rgb(255,255,255);
+    z-index:999; /* makes sure it stays on top */
+}
+ 
+#status {
+    width:128px;
+    height:128px;
+    position:absolute;
+    left:50%; /* wyśrodkowujemy w poziomie */
+    top:50%; /* wyśrodkowujemy w pionie */
+    margin:-64px 0 0 -64px;
+}
+
 @font-face {
     font-family: 'Roboto';
     src: url('../font/Roboto-Regular.ttf');
@@ -119,6 +140,10 @@ body {
     stroke:black;
     stroke-opacity: 1;
     stroke-width:0.5;
+}
+.title {
+    background-color: black;
+    color: white;
 }
 .info {
     background-color: rgba(48, 48, 48, .5);
