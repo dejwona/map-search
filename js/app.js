@@ -84,7 +84,11 @@ $(function() {
 
     });
 
+<<<<<<< HEAD
     land.on('click touchstart', function(event){
+=======
+    land.on('click touch', function(event){
+>>>>>>> 6aa39b7fee99ef19822cb533aa297cce11d3e678
       $error.css('display', 'none');
       $get_title.attr('value', 'Country');
       loadCountriesCode(this.id);
@@ -101,6 +105,32 @@ $(function() {
   }
 
   landLand();
+ titleNew = [];
+
+   $('.land').each(function(i){
+     var title = $(this).attr('title');
+     titleNew.push(title);
+   });
+
+// autocompliete
+// $get_title.on("keyup", function(e){
+//   var current = $(this).val();
+//   current = $.trim(current);
+//   var c = String.fromCharCode(e.which);
+//   if(current.length > 2) {
+//     for(var i = 1 ; i < titleNew.length; i++) {
+
+//     if( (titleNew[i].indexOf(current) !== -1) || (titleNew[i].toLowerCase().indexOf(current) !== -1) ) {
+//       if ($(this).val(titleNew[i])){
+//         colorMap();
+//         animateInfo();
+//       } 
+//     }
+//     }
+//   }
+// });
+
+
 
 
   var names = [];
@@ -217,6 +247,19 @@ $close.on('click', function() {
   }
   sendData();
 
+<<<<<<< HEAD
+=======
+// autocomplite
+
+
+ // console.log(titleNew);
+
+ // $titleInput.autocomplete({
+ //    source: titleNew
+ //  });
+
+
+>>>>>>> 6aa39b7fee99ef19822cb533aa297cce11d3e678
 
 // zoom
 var panZoomInstance = svgPanZoom('#map', {
